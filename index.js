@@ -14,7 +14,7 @@ function Capitalize(word) {
 }
 
 function GetPlayerChoice() {
-  return Capitalize(String(prompt("What are you gonna choose?")));
+  return Capitalize(String(prompt(focus("What are you gonna choose?"))));
 }
 
 function PlayRound(playerChoice, computerChoice) {
