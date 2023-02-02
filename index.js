@@ -8,3 +8,7 @@ function GetComputerChoice() {
       return "Rock";
   }
 }
+
+function GetPlayerChoice() {
+  return String(prompt("What are you gonna choose?"));
+}
