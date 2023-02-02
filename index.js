@@ -9,8 +9,12 @@ function GetComputerChoice() {
   }
 }
 
+function Capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+}
+
 function GetPlayerChoice() {
-  return String(prompt("What are you gonna choose?"));
+  return Capitalize(String(prompt("What are you gonna choose?")));
 }
 
 function PlayRound(playerChoice, computerChoice) {
