@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  /*border: red solid 1px*/
+  background-color: rgb(155, 249, 249);
+  font-family: "Spectral", serif;
+}
+
+body {
+  min-height: 100%;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 17%;
+}
+
+.points {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px 0px 50px 0px;
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.btn-rock,
+.btn-paper,
+.btn-scissor {
+  height: 50px;
+  width: 125px;
+  font-weight: bold;
+  border: 1px solid rgb(40, 39, 39);
+  color: white;
+  background-color: rgb(24, 63, 235);
+  border-radius: 7%;
+  margin: 15px;
+}
