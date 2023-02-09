@@ -1,52 +1,59 @@
+let playerPoints = 0;
+let computerPoints = 0;
+let draws = 0;
+let rounds = 0;
+let gameOver = false;
 function GetComputerChoice() {
-  switch (Math.floor(Math.random() * (3 - 1 + 1)) + 1) {
-    case 1:
-      return "Paper";
-    case 2:
-      return "Scissor";
-    case 3:
-      return "Rock";
-  }
+  return Math.floor(Math.random() * (3 - 1 + 1)) + 1;
 }
 
-function Capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-}
-
-function GetPlayerChoice() {
-  return Capitalize(String(prompt(focus("What are you gonna choose?"))));
+function GetPlayerChoice(number) {
+  PlayRound(number, GetComputerChoice());
 }
 
 function PlayRound(playerChoice, computerChoice) {
-  if (
-    playerChoice != "Rock" &&
-    playerChoice != "Scissor" &&
-    playerChoice != "Paper"
-  )
-    return "You must play with rock, paper or scissor";
-  if (
-    (playerChoice == "Paper" && computerChoice == "Paper") ||
-    (playerChoice == "Rock" && computerChoice == "Rock") ||
-    (playerChoice == "Scissor" && computerChoice == "Scissor")
-  ) {
-    return "It's a tie";
+  if (gameOver != true) {
+    let message = "";
+    if (
+      (playerChoice == 1 && computerChoice == 1) ||
+      (playerChoice == 2 && computerChoice == 2) ||
+      (playerChoice == 3 && computerChoice == 3)
+    ) {
+      message = "It's a tie";
+      draws += 1;
+      Game(message);
+    } else if (
+      (playerChoice == 1 && computerChoice == 3) ||
+      (playerChoice == 2 && playerChoice == 1) ||
+      (playerChoice == 3 && computerChoice == 2)
+    ) {
+      message = "You win!";
+      playerPoints += 1;
+      Game(message);
+    } else {
+      message = "You lose!";
+      computerPoints += 1;
+      Game(message);
+    }
   }
+}
 
-  if (
-    (playerChoice == "Rock" && computerChoice == "Scissor") ||
-    (playerChoice == "Paper" && playerChoice == "Rock") ||
-    (playerChoice == "Scissor" && computerChoice == "Paper")
-  ) {
-    return "You win!";
+function Game(message) {
+  if (rounds < 5) {
+    ShowPoints();
+    rounds += 1;
   } else {
-    return "You lose!";
+    gameOver = true;
+    const gameOverMessage = document.createElement("h1");
+    gameOverMessage.textContent = "That's all for today, folks!";
+    gameOverMessage.setAttribute("class", "gameOver");
+    document.querySelector(".gameOverContainer").appendChild(gameOverMessage);
   }
 }
 
-function Game() {
-  for (let i = 0; i < 5; i++) {
-    console.log(PlayRound(GetPlayerChoice(), GetComputerChoice()));
-  }
+function ShowPoints() {
+  const playerPointsTag = document.querySelector(".player-points");
+  const computerPointsTag = document.querySelector(".computer-points");
+  playerPointsTag.textContent = playerPoints;
+  computerPointsTag.textContent = computerPoints;
 }
-
-Game();
